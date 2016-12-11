@@ -1,0 +1,10 @@
+*.class
+*.log
+.idea
+*.iml
+
+bin
+gen
+build
+out
+.DS_Store
