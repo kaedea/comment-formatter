@@ -5,3 +5,5 @@ gen
 build
 out
 .DS_Store
+misc.xml
+workspace.xml

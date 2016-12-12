@@ -18,20 +18,20 @@ import org.apache.http.util.TextUtils;
  */
 public class CommentFormatter extends AnAction {
 
-    ///////////////////////////////////////////////////
-    //  public static final FiledA mFiledA; // xxx   //
-    //  private static final FiledB mFiledB; // xxx  //
-    //  public FiledC mFiledC; // xxx                //
-    //  protected final FiledD mFiledD; // xxx       //
-    //  FiledE mFiledE; // xxx                       //
-    //                      |                        //
-    //                      v                        //
-    //  public static final FiledA mFiledA;  // xxx  //
-    //  private static final FiledB mFiledB; // xxx  //
-    //  public FiledC mFiledC;               // xxx  //
-    //  protected final FiledD mFiledD;      // xxx  //
-    //  FiledE mFiledE;                      // xxx  //
-    ///////////////////////////////////////////////////
+    //  +---------------------------------------------+
+    //  | public static final FiledA mFiledA; // xxx  |
+    //  | private static final FiledB mFiledB; // xxx |
+    //  | public FiledC mFiledC; // xxx               |
+    //  | protected final FiledD mFiledD; // xxx      |
+    //  | FiledE mFiledE; // xxx                      |
+    //  |                     |                       |
+    //  |                     v                       |
+    //  | public static final FiledA mFiledA;  // xxx |
+    //  | private static final FiledB mFiledB; // xxx |
+    //  | public FiledC mFiledC;               // xxx |
+    //  | protected final FiledD mFiledD;      // xxx |
+    //  | FiledE mFiledE;                      // xxx |
+    //  +---------------------------------------------+
 
     public void actionPerformed(AnActionEvent e) {
 

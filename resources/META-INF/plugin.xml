@@ -1,13 +1,27 @@
 <idea-plugin version="2">
     <id>moe.studio.formatter</id>
     <name>Comment Formatter</name>
-    <version>0.1.0</version>
+    <version>0.1.1</version>
     <vendor email="kidhaibara@gmail.com"
             url="http://www.kaedea.com">Moe Studio
     </vendor>
 
     <description><![CDATA[
       Intellij plugin used to align comments.
+      +---------------------------------------------+
+      | public static final FiledA mFiledA; // xxx  |
+      | private static final FiledB mFiledB; // xxx |
+      | public FiledC mFiledC; // xxx               |
+      | protected final FiledD mFiledD; // xxx      |
+      | FiledE mFiledE; // xxx                      |
+      |                     |                       |
+      |                     v                       |
+      | public static final FiledA mFiledA;  // xxx |
+      | private static final FiledB mFiledB; // xxx |
+      | public FiledC mFiledC;               // xxx |
+      | protected final FiledD mFiledD;      // xxx |
+      | FiledE mFiledE;                      // xxx |
+      +---------------------------------------------+
     ]]>
     </description>
 
