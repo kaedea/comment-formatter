@@ -9,6 +9,7 @@ import com.intellij.openapi.editor.Editor;
 import com.intellij.openapi.editor.SelectionModel;
 import com.intellij.openapi.project.Project;
 import com.intellij.openapi.ui.Messages;
+import org.apache.commons.lang.StringUtils;
 import org.apache.http.util.TextUtils;
 
 /**
@@ -17,12 +18,20 @@ import org.apache.http.util.TextUtils;
  */
 public class CommentFormatter extends AnAction {
 
-    //   public static final FiledA mFiledA; // xxx
-    //   private static final FiledB mFiledB; // xxx
-    //   public FiledC mFiledC; // xxx
-    //   protected final FiledD mFiledD; // xxx
-    //   FiledE mFiledE; // xxx
-    @Override
+    ///////////////////////////////////////////////////
+    //  public static final FiledA mFiledA; // xxx   //
+    //  private static final FiledB mFiledB; // xxx  //
+    //  public FiledC mFiledC; // xxx                //
+    //  protected final FiledD mFiledD; // xxx       //
+    //  FiledE mFiledE; // xxx                       //
+    //                       ↓                        //
+    //  public static final FiledA mFiledA;  // xxx  //
+    //  private static final FiledB mFiledB; // xxx  //
+    //  public FiledC mFiledC;               // xxx  //
+    //  protected final FiledD mFiledD;      // xxx  //
+    //  FiledE mFiledE;                      // xxx  //
+    ///////////////////////////////////////////////////
+
     public void actionPerformed(AnActionEvent e) {
 
         //Get all the required data from data keys
@@ -57,17 +66,46 @@ public class CommentFormatter extends AnAction {
             }
         }
 
+        if (longestComment == -1) {
+            alert("WTF.");
+            return;
+        }
+
+        final StringBuilder sb = new StringBuilder();
+
+        for (int i = 0; i < strings.length; i++) {
+            String item = strings[i];
+            int position = item.indexOf("//");
+
+            if (position == longestComment) {
+                sb.append(item);
+
+            } else {
+                int start = item.indexOf(";");
+                if (start >= position) {
+                    alert("WTF.");
+                    return;
+                }
+                String left = item.substring(0, start + 1);
+                String middle = StringUtils.repeat(" ", longestComment - position);
+                String right = item.substring(start + 1);
+                sb.append(left).append(middle).append(right);
+            }
+
+            if (i < strings.length - 1) {
+                sb.append("\n");
+            }
+        }
+
         final int start = model.getSelectionStart();
         final int end = model.getSelectionEnd();
-        //New instance of Runnable to make a replacement
-        Runnable runnable = new Runnable() {
+
+        WriteCommandAction.runWriteCommandAction(project, new Runnable() {
             @Override
             public void run() {
-                document.replaceString(start, end, "Replacement");
+                document.replaceString(start, end, sb.toString());
             }
-        };
-        //Making the replacement
-        WriteCommandAction.runWriteCommandAction(project, runnable);
+        });
         model.removeSelection();
     }
 
