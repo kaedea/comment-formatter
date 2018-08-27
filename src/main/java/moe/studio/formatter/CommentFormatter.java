@@ -35,10 +35,10 @@ public class CommentFormatter extends AnAction {
 
     public void actionPerformed(AnActionEvent e) {
 
-        //Get all the required data from data keys
+        // Get all the required data from data keys
         final Editor editor = e.getRequiredData(CommonDataKeys.EDITOR);
         final Project project = e.getRequiredData(CommonDataKeys.PROJECT);
-        //Access document, caret, and selection
+        // Access document, caret, and selection
         final Document document = editor.getDocument();
         final SelectionModel model = editor.getSelectionModel();
 
@@ -114,6 +114,7 @@ public class CommentFormatter extends AnAction {
         Messages.showMessageDialog(
                 msg,
                 "Comment Formatter",
-                Messages.getInformationIcon());
+                Messages.getInformationIcon()
+        );
     }
 }

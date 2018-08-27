@@ -1,5 +1,6 @@
 *.class
 *.log
+*.log
 bin
 gen
 build
@@ -7,3 +8,10 @@ out
 .DS_Store
 misc.xml
 workspace.xml
+.gradle
+.idea/caches
+.idea/libraries
+.idea/modules
+.idea/modules.xml
+.idea/gradle.xml
+
